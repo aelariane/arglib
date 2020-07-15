@@ -29,7 +29,7 @@ namespace Arglib
 
         public override int GetHashCode()
         {
-            return (Alias, Name).GetHashCode();
+            return Alias.GetHashCode() | Name.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -67,15 +67,6 @@ namespace Arglib
 
 
         #region Operators
-        public static implicit operator ValueTuple<char, string>(OptionIdentifier identifier)
-        {
-            return new ValueTuple<char, string>(identifier.Alias, identifier.Name);
-        }
-
-        public static implicit operator OptionIdentifier(ValueTuple<char, string> tuple)
-        {
-            return new OptionIdentifier(tuple.Item1, tuple.Item2);
-        }
 
         public static implicit operator char(OptionIdentifier identifier)
         {
