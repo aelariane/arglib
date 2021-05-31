@@ -11,10 +11,11 @@ namespace Arglib.Parsing
         {
             string[] separated = raw.Split(' ');
             List<string> temp = new List<string>();
+
             for (int i = 0; i < separated.Length; i++)
             {
                 string current = separated[i];
-                
+
                 if (current.EndsWith(@"\"))
                 {
                     int index = i;
@@ -26,11 +27,12 @@ namespace Arglib.Parsing
                         count++;
                     }
                     current = string.Join(" ", separated, index, count).Replace(@"\", string.Empty);
+                    i--;
                 }
                 else if (current.Contains("\""))
                 {
                     string tmp;
-                    string[] sep = current.Split('"');
+                    string[] sep = current.Split('\"');
                     if(sep.Length == 1)
                     {
                         tmp = sep[0];
@@ -39,16 +41,18 @@ namespace Arglib.Parsing
                     else
                     {
                         current = sep[0];
-                        tmp = string.Join("\"", sep, 1, sep.Length - 1);
+                        tmp = string.Join('\"', sep, 1, sep.Length - 1);
                     }
-                    string next = separated[++i];
-                    while (!next.EndsWith("\""))
+                    string next = separated[i++];
+                    while (!next.EndsWith('\"'))
                     {
                         next = separated[i++];
                         tmp += (" " + next);
                     }
                     current += tmp.Remove(tmp.Length - 1, 1);
+                    i--;
                 }
+
                 temp.Add(current);
             }
             return temp.ToArray();
