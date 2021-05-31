@@ -37,8 +37,10 @@ namespace Arglib.Tests
                 "foo -abcde --arg1=arg1_arg -t target_arg",
                 "func -abc -d ArgPart1\\ ArgPart2",
                 "function -idc -t \"Test1 Test2 Test3\"",
-                "func -idco --test=some\\ separated\\ args",
-                "func -abcde --some_cool_test_option=\"TEST ME PLS\""
+                "func -idco --test=some\\ separated\\ args --two=some\\ separated\\ args\\ ver2",
+                "func -idco --test=some\\ args --two=some\\ ver2",
+                "func -abcde --some_cool_test_option=\"TEST ME PLS\"",
+                "func --option_one=\"TEST ME PLS\" --option_two=\"TEST ME PLS TWO\" --option_three=\"TEST ME PLS TWO\""
             }; //Set of variants to test
             foreach (string test in posixTestCommands)
             {
