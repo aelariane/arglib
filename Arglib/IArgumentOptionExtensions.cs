@@ -78,5 +78,14 @@ namespace Arglib
             }
             return DefaultParsingValues.Single;
         }
+
+        public static string AsString(this IArgumentOption option)
+        {
+            if (option.HasValue())
+            {
+                return option.Values[0];
+            }
+            return string.Empty;
+        }
     }
 }
